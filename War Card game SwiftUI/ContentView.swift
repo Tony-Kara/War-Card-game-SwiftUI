@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State  var playerCard = "card7"
+    @State  var cpuCard = "card9"
+    @State  var playerScore = 0
+    @State var cpuScore = 0
+    
     var body: some View {
         
    
@@ -22,14 +28,28 @@ struct ContentView: View {
                 Spacer()
                 HStack() {
                     Spacer()
-                    Image("card2")
+                    Image(playerCard)
                     Spacer()
-                    Image("card3")
+                    Image(cpuCard)
                     Spacer()
                 }
                 
                 Spacer()
-                Image("dealbutton")
+                Button(action: {
+                    
+                    //update the card
+                    
+                    playerCard = "card8"
+                    cpuCard = "card12"
+                    
+                    // update the score
+                    playerScore += 1
+                    cpuScore += 1
+                    
+                }, label: {
+                   Image("dealbutton")
+                })
+                
                 Spacer()
                
                 
@@ -40,7 +60,7 @@ struct ContentView: View {
                             .font(.headline)
                             .foregroundColor(Color.white)
                             .padding(.bottom, 10.0)
-                        Text("0")
+                        Text(String(playerScore))
                             .font(.largeTitle)
                             .foregroundColor(Color.white)
                     }
@@ -50,7 +70,7 @@ struct ContentView: View {
                             .font(.headline)
                             .foregroundColor(Color.white)
                             .padding(.bottom, 10.0)
-                        Text("0")
+                        Text(String(cpuScore))
                             .font(.largeTitle)
                             .foregroundColor(Color.white)
                     }
