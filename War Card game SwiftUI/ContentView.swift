@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State  var playerCard = "card7"
-    @State  var cpuCard = "card9"
-    @State  var playerScore = 0
-    @State var cpuScore = 0
+    @State private var playerCard = "card7"
+    @State  private var cpuCard = "card9"
+    @State  private var playerScore = 0
+    @State private  var cpuScore = 0
     
     var body: some View {
         
@@ -37,14 +37,26 @@ struct ContentView: View {
                 Spacer()
                 Button(action: {
                     
+                    //generate random number between 2 and 14
+                    let playerRand = Int.random(in: 2...14)
+                    let cpuRand = Int.random(in: 2...14)
+                    
                     //update the card
                     
-                    playerCard = "card8"
-                    cpuCard = "card12"
+                    playerCard = "card" + String(playerRand)
+                    cpuCard = "card" + String(cpuRand)
                     
                     // update the score
-                    playerScore += 1
-                    cpuScore += 1
+                  
+                    if playerRand > cpuRand {
+                        playerScore += 1
+                    }
+                    else if cpuRand > playerRand {
+                        cpuScore += 1
+                    }
+                    
+                    
+                   
                     
                 }, label: {
                    Image("dealbutton")
